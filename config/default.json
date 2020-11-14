@@ -1,0 +1,4 @@
+{
+    "mongoURL": "mongodb+srv://jackluong:Inuyasha123@react-web-with-db.kcyw3.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken" 
+}
