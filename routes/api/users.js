@@ -47,7 +47,7 @@ router.post('/', [
         }
         //get user gravatar (post image on gravatar.com and input url to the code)
         const avatar = gravatar.url({
-            s: '200', //size 200
+            s: '200', // size 200
             r: 'pg',  // type of image, avoid illegal img
             d: 'mm'   // default type avoid error status
         })
