@@ -1,0 +1,11 @@
+redux
+1.CreateStore with tools 
+2.reducer(root) with CombineReducers 
+3. setup Branches reducer (SW-Case => return payload)
+4. Setup action (destructoring variable, uuid if use map method) 
+5. dispatch = funcion carry payload, type
+[= () => dispatch => ] => 
+
+Take data from root store 
+1. create LAYOUT to have jsx to import for visualizing =>
+2. use mapStateToProps ([optional name] = state.[name] => pass to connect => destructoring to use as a prop =>

@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs');
 
 //Create    a route;
 //@Route    Get api/auth
-//@desc     Test route
+//@desc     Get user data
 //@access   Private
 //@middleware whenever want to use middleware then add it as a secondary argument in router.get;
 //@middleware used to authenicate whether the user are valid or not

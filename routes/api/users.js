@@ -10,8 +10,8 @@ const User = require('../../models/User');
 
 //Create    a route;
 //@Route    POST api/users
-//@desc     Test route
-//@access   Public
+//@desc     Register Route
+//@access   Private
 
 //FLOW: check function inside POST -> error handling ->user handling
 
@@ -48,7 +48,7 @@ router.post('/', [
         //get user gravatar (post image on gravatar.com and input url to the code)
         const avatar = gravatar.url({
             s: '200', // size 200
-            r: 'pg',  // type of image, avoid illegal img
+            r: 'pg',  // rating permitted G images allowed
             d: 'mm'   // default type avoid error status
         })
 
