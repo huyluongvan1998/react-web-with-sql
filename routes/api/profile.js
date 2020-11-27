@@ -185,7 +185,7 @@ router.delete('/', auth, async (req,res) => {
 //@access   Private
 
 router.put('/experience', [auth,
-    check('title', 'Title is required')
+check('title', 'Title is required')
     .not()
     .isEmpty(),
 check('company', 'Company is required')
@@ -194,10 +194,14 @@ check('company', 'Company is required')
 check('location', 'Location is required')
     .not()
     .isEmpty(),
-check('From', 'Date is required')
+check('from', 'From is required')
     .not()
-    .isDate(),
+    .isEmpty(),
 ], async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        res.status(400).json({errors: errors.array() });
+    }
     try {
         const {
             title,
@@ -274,8 +278,13 @@ router.put('/education', [auth,
     check('school','School is required').not().isEmpty(),
     check('degree','Degree is required').not().isEmpty(),
     check('fieldofstudy','Field of study is required').not().isEmpty(),
-    check('From','Date is required').isDate()
+    check('from','From is required').not().isEmpty()
 ], async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        res.status(400).json({errors: errors.array() });
+    }
+
     try {
         const {
             school,
@@ -304,7 +313,7 @@ router.put('/education', [auth,
         }
 
         profile.education.unshift(newEdu);
-        profile.save();
+        await profile.save();
         res.json(profile);
 
     } catch (error) {
