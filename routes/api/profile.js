@@ -14,7 +14,7 @@ const request = require('request')
 //@Route    Get api/profile/me
 //@desc     Get current user Profile
 //@access   Private
-router.get('/', auth, async (req, res)=> {
+router.get('/me', auth, async (req, res)=> {
     try{
         //find profile by id from auth middleware 
         // populate to take more info to profile
@@ -124,7 +124,7 @@ router.post('/', [auth, [
 //@desc     GET all user Profile
 //@access   Private
     
-router.get('/all', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const profiles = await Profile.find().populate('user', ['name', 'avatar']);
 
@@ -161,7 +161,7 @@ router.get('/user/:user_id', async (req, res) => {
 
 //Create    a route;
 //@Route    DELETE api/profile
-//@desc     GET user Profile by user-id
+//@desc     Delete user Profile by user-id
 //@access   Private
 
 router.delete('/', auth, async (req,res) => {

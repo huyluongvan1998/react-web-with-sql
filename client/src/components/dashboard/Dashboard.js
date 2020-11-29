@@ -1,15 +1,21 @@
 import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getCurrentProfile } from '../../action/profile';
+
 import { Spinner } from '../layout/Spinner';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import DashboardAction from './DashboardAction';
 import Experience from './Experience';
-import Education from './Education'
+import Education from './Education';
+
+
+//actio
+import { getCurrentProfile, accountDeleted } from '../../action/profile';
+//action
 
 const Dashboard =  ({ 
     getCurrentProfile,
+    accountDeleted,
     auth: { user }, 
     profile: { profile, loading }}) => {
 
@@ -31,6 +37,10 @@ const Dashboard =  ({
                 <DashboardAction />
                 <Experience experiences={profile.experience} />
                 <Education educations={profile.education} />
+                <button
+                    className='btn btn-danger my-2'
+                    onClick={() => accountDeleted()}
+                >Delete Account</button>
             </Fragment> 
             ) : (      
             <Fragment>
@@ -38,6 +48,10 @@ const Dashboard =  ({
                 <Link to='/create-profile' className='btn btn-primary my-1' >
                     Create Profile
                 </Link>
+                <button
+                    className='btn btn-danger my-2'
+                    onClick={() => accountDeleted()}
+                >Delete Account</button>
             </Fragment> )
         }
 
@@ -48,8 +62,9 @@ const Dashboard =  ({
 
 Dashboard.propTypes = {
 getCurrentProfile : PropTypes.func.isRequired,
+accountDeleted: PropTypes.func.isRequired,
 auth: PropTypes.object.isRequired,
-profile: PropTypes.object.isRequired,
+profile: PropTypes.object.isRequired
 }
 
 
@@ -58,4 +73,8 @@ const mapStateToProps = state => ({
     profile: state.profile 
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { 
+    getCurrentProfile, 
+    accountDeleted 
+})(Dashboard);
+
